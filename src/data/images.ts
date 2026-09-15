@@ -12,6 +12,9 @@ export const schoolImages = {
   campusWide: `${cdn}/c03faeee1159a98b48459aaf712674d9.png`,
   staff: `${cdn}/24671fb44717b694983a1ffa33c12f15.jpg`,
   administration: `${cdn}/58d1fc4e3625e3898186799479eaa80e.png`,
+  director: `${cdn}/8d23240f4d872af6a14c603fa6b8eaaf.jpg`,
+  principal: `${cdn}/f8b5f62d4380d0c4eaa7d4b1f7d660d7.png`,
+  admission: `${cdn}/f1f04f8aa18f70faabacbdfa203638bf.jpg`,
   computerLab: `${cdn}/330431e478de8603acc86135f451260f.jpg`,
   computerLabModern: `${cdn}/cfd9a41e5c05a3c987df6de719729f0f.jpg`,
   hostelClassroom: `${cdn}/92e5a03fcf66acbdd45fadcafb4e8038.jpg`,
@@ -20,46 +23,16 @@ export const schoolImages = {
 };
 
 export const facilityImages: Record<string, SchoolImage> = {
-  'CCTV & campus safety': {
-    src: schoolImages.outdoorAssembly,
-    alt: 'British English School campus and student assembly area',
-  },
-  'Dance & activity spaces': {
-    src: `${cdn}/265cf6a248db93a966fe6fb4a221334d.jpg`,
-    alt: 'British English School students performing on stage',
-  },
-  'Gym & physical development': {
-    src: `${cdn}/d6118dc87db345fca2eb4aa38d61446a.jpg`,
-    alt: 'British English School students during an educational activity',
-  },
-  'Computer Lab': {
-    src: schoolImages.computerLabModern,
-    alt: 'Students working in the British English School computer lab',
-  },
-  'Exam preparation support': {
-    src: `${cdn}/783144652b74f4da7144e708a9e3a13a.jpg`,
-    alt: 'Academic achievement event at British English School',
-  },
-  'School ERP': {
-    src: schoolImages.administration,
-    alt: 'British English School administration meeting',
-  },
-  Laboratories: {
-    src: schoolImages.hostelClassroom,
-    alt: 'Students learning in a classroom at British English School',
-  },
-  'Sports & Yoga': {
-    src: `${cdn}/959992d34515ed76a69e5ecd0fa1b3f6.jpg`,
-    alt: 'British English School students participating in school activities',
-  },
-  Library: {
-    src: schoolImages.staff,
-    alt: 'British English School faculty and staff',
-  },
-  'Student transport': {
-    src: schoolImages.campusWide,
-    alt: 'Aerial view of British English School campus',
-  },
+  'CCTV & campus safety': { src: schoolImages.outdoorAssembly, alt: 'British English School campus and student assembly area' },
+  'Dance & activity spaces': { src: `${cdn}/265cf6a248db93a966fe6fb4a221334d.jpg`, alt: 'British English School students performing on stage' },
+  'Gym & physical development': { src: `${cdn}/d6118dc87db345fca2eb4aa38d61446a.jpg`, alt: 'British English School students during an educational activity' },
+  'Computer Lab': { src: schoolImages.computerLabModern, alt: 'Students working in the British English School computer lab' },
+  'Exam preparation support': { src: `${cdn}/783144652b74f4da7144e708a9e3a13a.jpg`, alt: 'Academic achievement event at British English School' },
+  'School ERP': { src: schoolImages.administration, alt: 'British English School administration meeting' },
+  Laboratories: { src: schoolImages.hostelClassroom, alt: 'Students learning in a classroom at British English School' },
+  'Sports & Yoga': { src: `${cdn}/959992d34515ed76a69e5ecd0fa1b3f6.jpg`, alt: 'British English School students participating in school activities' },
+  Library: { src: schoolImages.staff, alt: 'British English School faculty and staff' },
+  'Student transport': { src: schoolImages.campusWide, alt: 'Aerial view of British English School campus' },
 };
 
 export const galleryImages: SchoolImage[] = [
@@ -93,6 +66,9 @@ export const galleryImages: SchoolImage[] = [
   { src: `${cdn}/9bd2383db8554560dc27dc8a7b76768c.png`, alt: 'British English School main building', category: 'Administrative Block' },
   { src: `${cdn}/9fa6c04e5407ed8f7fbd3a989dec59b2.jpeg`, alt: 'Akashi Kumari school topper achievement card', category: 'Toppers' },
   { src: `${cdn}/3a4f56b722989531978a86dfea792860.jpeg`, alt: 'Anshu Kr. Shah school topper achievement card', category: 'Toppers' },
+  { src: `${cdn}/348010964c5b8bc02949222ba0d2f0a4.jpg`, alt: 'British English School campus gallery photograph', category: 'School Life' },
+  { src: `${cdn}/3318ffad20140e7f1351c8d1dd5dfb13.jpg`, alt: 'British English School campus event photograph', category: 'School Life' },
+  { src: `${cdn}/4c6150d64abddee635ef8a5b7a092324.jpg`, alt: 'British English School campus gallery photograph', category: 'School Life' },
 ];
 
 export const topperImages: Record<string, string> = {
