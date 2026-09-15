@@ -1,0 +1,1 @@
+export const navigation=[{label:'About',to:'/about'},{label:'Academics',to:'/academics',children:true},{label:'Facilities',to:'/facilities'},{label:'Admission',to:'/admission'},{label:'Announcements',to:'/announcements'},{label:'Results',to:'/results'},{label:'Gallery',to:'/gallery'},{label:'Contact',to:'/contact'}];

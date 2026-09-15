@@ -1,0 +1,2 @@
+export const announcements=['Results of SBTSE Super 30 held on 28.12.2025 will be published on 05 Jan 2026.','Admission Cum Registration is going for Nur to IX and XI for session 2026-27.'];
+export const galleryCategories=['15th August 2025','Hostel','Republic Day 2025','UTSAV 2024','Independence Day 2024','Administrative Block','Reception','Principal Office','Assembly Ground','Outdoor Games','Gym','Classroom','Laboratories','Computer Lab','Events','PTM','Educational Tour'];

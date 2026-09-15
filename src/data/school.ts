@@ -1,0 +1,3 @@
+export const school={name:'British English School',shortName:'BES',location:'Gere, Manpur, Gaya',address:'Vill-Gere, Post-Manpur, P.S.-Mufassil, Gaya-823003',email:'britishenglishschoolgaya@gmail.com',phones:['9931934999','9931984999','7766994006'],hours:'7:00 AM - 5:00 PM',admission:'Admission Cum Registration is going for Classes Nur to IX and XI (2026-27)'};
+export const stats=[['25+','Years of learning'],['10+','Academic disciplines'],['12','Classes up to XII'],['100%','Focus on growth']];
+export const facilities=['CCTV & campus safety','Dance & activity spaces','Gym & physical development','Computer Lab','Exam preparation support','School ERP','Laboratories','Sports & Yoga','Library','Student transport'];

@@ -1,0 +1,1 @@
+export const toppers=[['Anika Kumari','X','99.20%'],['Satyam Kumar','X','98.60%'],['Anjali Kumari','X','98.40%'],['Sejal Kumari','X','97.80%'],['Shubham Kr. Verma','X','96.80%'],['Anshu Kr. Shah','X','96.60%'],['Anmol Raj','X','96.60%']];
