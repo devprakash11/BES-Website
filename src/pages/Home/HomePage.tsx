@@ -1,22 +1,131 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, BookOpen, Bus, Library, Microscope, ShieldCheck, Trophy } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight, PlayCircle } from 'lucide-react';
 import { announcements } from '../../data/content';
-import { facilityImages, schoolImages, galleryImages, topperImages } from '../../data/images';
-import { facilities, school, stats } from '../../data/school';
+import { galleryImages, schoolImages, topperImages } from '../../data/images';
+import { school } from '../../data/school';
 import { toppers } from '../../data/toppers';
+import { useEffect, useState } from 'react';
 
-const icons = [ShieldCheck, BookOpen, Microscope, Library, Bus];
+const slides = [
+  schoolImages.hero,
+  schoolImages.campusWide,
+  schoolImages.campus,
+  schoolImages.outdoorAssembly,
+  schoolImages.event,
+];
+
+const aboutText = `Education is a life-long journey and the School realizes the importance of a good start. We believe that every child is unique and deserves an environment where knowledge, confidence, discipline and character can grow together. British English School provides a balanced learning experience through academics, activities, sports, technology and values.`;
 
 export function HomePage() {
-  return <>
-    <section className="announcement-strip"><div className="container"><strong>Admissions 2026-27</strong><span>{school.admission}</span><Link to="/admission">Apply Online <ArrowRight size={15} /></Link></div></section>
-    <section className="hero"><div className="container hero-grid"><div className="hero-copy"><p className="eyebrow">Learning with purpose</p><h1>Build strong foundations. <em>Grow without limits.</em></h1><p>British English School brings together academic focus, practical learning, values and co-curricular opportunities in a calm environment designed for children to learn and thrive.</p><div className="hero-actions"><Link className="btn btn-primary" to="/admission">Begin Admission <ArrowRight size={18} /></Link><Link className="btn btn-outline" to="/about">Discover BES</Link></div></div><div className="hero-visual hero-image-visual"><img src={schoolImages.hero} alt="British English School main campus building" className="hero-campus-image" /><div className="hero-image-overlay" /><div className="hero-card hero-image-card"><span>BES</span><h3>Education for a changing world</h3><p>Academics • Skills • Character • Opportunity</p></div></div></div></section>
-    <section className="stats"><div className="container stats-grid">{stats.map(([n, l]) => <div key={l}><strong>{n}</strong><span>{l}</span></div>)}</div></section>
-    <section className="section"><div className="container split"><div><p className="eyebrow">About the school</p><h2>A thoughtful start to a lifelong learning journey.</h2><p>From classrooms and laboratories to activity spaces, the school focuses on analytical thinking, problem solving and constructive learning. Students study core subjects while building confidence through a broad range of co-curricular experiences.</p><Link className="text-link" to="/about">Read our story <ArrowRight size={17} /></Link></div><div className="about-photo-card"><img src={schoolImages.campus} alt="British English School students and teachers outside the school building" loading="lazy" /><div><strong>British English School</strong><span>Gere, Manpur, Gaya</span></div></div></div></section>
-    <section className="section section-soft"><div className="container"><div className="section-head"><div><p className="eyebrow">School experience</p><h2>Spaces and support for every part of student life.</h2></div><Link className="text-link" to="/facilities">View all facilities <ArrowRight size={17} /></Link></div><div className="facility-grid">{facilities.map((f, i) => { const Icon = icons[i % icons.length]; const image = facilityImages[f]; return <article className="facility-card facility-card-image" key={f}>{image && <img src={image.src} alt={image.alt} loading="lazy" />}<div className="facility-card-body"><Icon /><h3>{f}</h3><span>Explore →</span></div></article>; })}</div></div></section>
-    <section className="section"><div className="container message-grid"><article className="message-card director"><div className="message-photo"><img src={schoolImages.director} alt="British English School Director" loading="lazy" /></div><p className="eyebrow">Director's message</p><h3>Education gives direction to ambition.</h3><p>Our focus is to help learners develop knowledge, creativity and the confidence to contribute meaningfully to society.</p><Link to="/about" className="text-link">Read message <ArrowRight size={17} /></Link></article><article className="message-card principal"><div className="message-photo"><img src={schoolImages.principal} alt="British English School Principal" loading="lazy" /></div><p className="eyebrow">Principal's message</p><h3>Prepared for a competitive and changing world.</h3><p>We encourage academic excellence, Indian values, leadership, tolerance and participation across learning, sports and co-curricular activities.</p><Link to="/about" className="text-link">Read message <ArrowRight size={17} /></Link></article></div></section>
-    <section className="section section-dark"><div className="container"><div className="section-head light"><div><p className="eyebrow">Student achievement</p><h2>Our toppers, 2025-2026.</h2></div><Trophy /></div><div className="topper-grid">{toppers.slice(0, 6).map(([name, cls, score], i) => <article key={name} className="topper-card topper-card-image"><span>0{i + 1}</span><img src={topperImages[name]} alt={`${name}, Class ${cls}, ${score}`} loading="lazy" /><h3>{name}</h3><p>Class {cls}</p><strong>{score}</strong></article>)}</div><Link className="btn btn-light" to="/toppers">View all toppers</Link></div></section>
-    <section className="section"><div className="container"><div className="section-head"><div><p className="eyebrow">Campus moments</p><h2>School life beyond the classroom.</h2></div><Link className="text-link" to="/gallery">Open gallery <ArrowRight size={17} /></Link></div><div className="gallery-mosaic">{galleryImages.slice(0, 8).map((image, i) => <Link to="/gallery" key={`${image.src}-${i}`} className={`gallery-tile tile-${i}`}><img src={image.src} alt={image.alt} loading="lazy" /><span>{image.category}</span></Link>)}</div></div></section>
-    <section className="section section-soft"><div className="container announcement-layout"><div><p className="eyebrow">Latest updates</p><h2>Announcements</h2>{announcements.map((a, i) => <article className="announcement" key={a}><b>0{i + 1}</b><p>{a}</p></article>)}<Link className="text-link" to="/announcements">All announcements <ArrowRight size={17} /></Link></div><div className="cta-panel"><img className="admission-cta-image" src={schoolImages.admission} alt="British English School admission open for session 2026-2027" loading="lazy" /><BookOpen /><p className="eyebrow">Admissions</p><h3>Your child's next chapter can start here.</h3><p>Explore admission information and begin the registration process online.</p><Link className="btn btn-primary" to="/admission">Apply for 2026-27</Link></div></div></section>
-  </>;
+  const [slide, setSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => setSlide((current) => (current + 1) % slides.length), 5000);
+    return () => window.clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="classic-home">
+      <section className="classic-slider" aria-label="British English School campus highlights">
+        {slides.map((image, index) => (
+          <img
+            key={image}
+            src={image}
+            alt="British English School campus"
+            className={index === slide ? 'active' : ''}
+          />
+        ))}
+        <div className="classic-slider-overlay" />
+        <div className="container classic-slider-content">
+          <span className="classic-kicker">British English School, Gere, Manpur, Gaya</span>
+          <h1>Welcome to British English School</h1>
+          <p>{school.admission}</p>
+          <div className="classic-slider-actions">
+            <Link to="/admission" className="classic-btn classic-btn-red">Apply Online</Link>
+            <Link to="/about" className="classic-btn classic-btn-light">Know More</Link>
+          </div>
+        </div>
+        <button className="slider-arrow left" onClick={() => setSlide((slide - 1 + slides.length) % slides.length)} aria-label="Previous slide"><ChevronLeft /></button>
+        <button className="slider-arrow right" onClick={() => setSlide((slide + 1) % slides.length)} aria-label="Next slide"><ChevronRight /></button>
+        <div className="slider-dots">{slides.map((image, index) => <button key={image} className={index === slide ? 'active' : ''} onClick={() => setSlide(index)} aria-label={`Go to slide ${index + 1}`} />)}</div>
+      </section>
+
+      <section className="classic-about section">
+        <div className="container classic-two-col">
+          <div className="classic-image-frame"><img src={schoolImages.campus} alt="British English School campus" /></div>
+          <div className="classic-copy">
+            <span className="classic-section-label">About School</span>
+            <h2>ABOUT SCHOOL</h2>
+            <p>{aboutText}</p>
+            <p>Our aim is to nurture responsible, capable and confident learners who are prepared for higher education and the challenges of a changing world.</p>
+            <Link to="/about" className="classic-read-more">Read More <ArrowRight size={16} /></Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="classic-announcement section">
+        <div className="container classic-two-col announcement-cols">
+          <div>
+            <span className="classic-section-label">Latest Updates</span>
+            <h2>ANNOUNCEMENT</h2>
+            <div className="classic-notices">
+              {announcements.map((notice, index) => <article key={notice}><span>0{index + 1}</span><p>{notice}</p></article>)}
+            </div>
+            <Link to="/announcements" className="classic-read-more">View All Announcements <ArrowRight size={16} /></Link>
+          </div>
+          <div className="classic-notice-panel">
+            <div className="notice-icon"><PlayCircle size={32} /></div>
+            <h3>Admissions Open</h3>
+            <p>{school.admission}</p>
+            <Link to="/admission" className="classic-btn classic-btn-red">Apply Online</Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="classic-message section">
+        <div className="container classic-two-col">
+          <article className="classic-message-card">
+            <img src={schoolImages.director} alt="Director of British English School" />
+            <div><span className="classic-section-label">Director's Message</span><h2>DIRECTOR'S MESSAGE</h2><p>Education should build knowledge, values and the confidence to face life with purpose. We remain committed to creating opportunities for every learner.</p><Link to="/about" className="classic-read-more">Read More <ArrowRight size={16} /></Link></div>
+          </article>
+          <article className="classic-message-card">
+            <img src={schoolImages.principal} alt="Principal of British English School" />
+            <div><span className="classic-section-label">Principal's Message</span><h2>PRINCIPAL'S MESSAGE</h2><p>We encourage academic excellence, discipline, participation and respect while helping students discover their strengths and develop into responsible citizens.</p><Link to="/about" className="classic-read-more">Read More <ArrowRight size={16} /></Link></div>
+          </article>
+        </div>
+      </section>
+
+      <section className="classic-gallery section">
+        <div className="container">
+          <div className="classic-section-heading"><div><span className="classic-section-label">Campus Life</span><h2>PHOTO GALLERY</h2></div><Link to="/gallery" className="classic-read-more">View Gallery <ArrowRight size={16} /></Link></div>
+          <div className="classic-gallery-grid">
+            {galleryImages.slice(0, 8).map((image) => <Link to="/gallery" key={image.src} className="classic-gallery-item"><img src={image.src} alt={image.alt} /><span>{image.category}</span></Link>)}
+          </div>
+        </div>
+      </section>
+
+      <section className="classic-toppers section">
+        <div className="container">
+          <div className="classic-section-heading"><div><span className="classic-section-label">Academic Achievement</span><h2>OUR TOPPERS</h2></div><Link to="/toppers" className="classic-read-more">View All Toppers <ArrowRight size={16} /></Link></div>
+          <div className="classic-topper-grid">
+            {toppers.slice(0, 4).map(([name, cls, score]) => <article key={name} className="classic-topper-card"><div className="classic-topper-image"><img src={topperImages[name]} alt={`${name}, Class ${cls}`} /></div><h3>{name}</h3><p>Class {cls}</p><strong>{score}</strong></article>)}
+          </div>
+        </div>
+      </section>
+
+      <section className="classic-contact section">
+        <div className="container classic-contact-grid">
+          <div><span className="classic-section-label">Get in Touch</span><h2>CONTACT INFO</h2><p><strong>Address:</strong> {school.address}</p><p><strong>Phone:</strong> {school.phones.join(', ')}</p><p><strong>Email:</strong> {school.email}</p><p><strong>Working Hours:</strong> {school.hours}</p></div>
+          <div className="classic-contact-image"><img src={schoolImages.campusWide} alt="British English School campus" /></div>
+        </div>
+      </section>
+
+      <section className="classic-leave-message section">
+        <div className="container classic-form-wrap">
+          <div><span className="classic-section-label">Contact Us</span><h2>LEAVE MESSAGE</h2><p>Have a question about admission, academics or the school? Send us a message and the school team can get back to you.</p></div>
+          <Link to="/contact" className="classic-btn classic-btn-red">Contact School</Link>
+        </div>
+      </section>
+    </div>
+  );
 }
