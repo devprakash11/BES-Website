@@ -1,0 +1,203 @@
+.hero-image-visual {
+  min-height: 500px;
+  background: #090d12;
+}
+
+.hero-campus-image {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(9, 13, 18, 0.02) 20%, rgba(9, 13, 18, 0.7) 100%);
+}
+
+.hero-image-card {
+  color: var(--ink);
+  width: min(78%, 470px);
+}
+
+.about-photo-card {
+  position: relative;
+  min-height: 430px;
+  overflow: hidden;
+  border-radius: 30px;
+  background: var(--paper);
+  box-shadow: 0 24px 60px rgba(9, 16, 25, 0.12);
+}
+
+.about-photo-card img {
+  width: 100%;
+  height: 100%;
+  min-height: 430px;
+  object-fit: cover;
+}
+
+.about-photo-card > div {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  padding: 15px 18px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(10px);
+}
+
+.about-photo-card span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.facility-card-image {
+  padding: 0;
+  overflow: hidden;
+  min-height: 260px;
+}
+
+.facility-card-image > img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.facility-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px;
+}
+
+.facility-card-body svg {
+  flex: 0 0 auto;
+}
+
+.facility-card-body span {
+  margin-top: auto;
+}
+
+.message-photo {
+  height: 190px;
+  margin: -42px -42px 30px;
+  overflow: hidden;
+}
+
+.message-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.topper-card-image > img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  margin-top: 14px;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.topper-card-image .avatar {
+  display: none;
+}
+
+.gallery-tile {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  min-height: 150px;
+  isolation: isolate;
+}
+
+.gallery-tile img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.gallery-tile::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(9, 13, 18, 0.04), rgba(9, 13, 18, 0.78));
+}
+
+.gallery-tile:hover img {
+  transform: scale(1.05);
+}
+
+.gallery-tile span,
+.gallery-tile figcaption {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 20px;
+  color: #fff;
+  font: 700 17px Manrope, sans-serif;
+}
+
+.full-gallery .gallery-tile {
+  min-height: 230px;
+}
+
+.facilities-page-grid .facility-card-image {
+  min-height: 310px;
+}
+
+@media (max-width: 900px) {
+  .hero-image-visual,
+  .hero-campus-image {
+    min-height: 420px;
+  }
+
+  .about-photo-card,
+  .about-photo-card img {
+    min-height: 360px;
+  }
+
+  .message-photo {
+    margin: -42px -42px 26px;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-image-visual,
+  .hero-campus-image {
+    min-height: 360px;
+  }
+
+  .hero-image-card {
+    width: calc(100% - 28px);
+    left: 14px;
+    bottom: 14px;
+  }
+
+  .about-photo-card,
+  .about-photo-card img {
+    min-height: 300px;
+  }
+
+  .about-photo-card > div {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .message-photo {
+    margin: -28px -28px 22px;
+    height: 160px;
+  }
+}
