@@ -1,1 +1,17 @@
-import { useState } from 'react'; import { PageShell } from '../../components/common/PageShell'; export function ResultsPage(){const [value,setValue]=useState('');return <PageShell eyebrow="Results" title="Check Super 30 results."><form className="result-card" onSubmit={e=>e.preventDefault()}><h2>Search result</h2><p>Enter Roll No. followed by Date of Birth in DDMMYYYY format, for example 911201012008.</p><input value={value} onChange={e=>setValue(e.target.value)} placeholder="Roll No. + DOB"/><button className="btn btn-primary">Check result</button>{value&&<small>Connect this frontend form to the official result service when backend/API access is available.</small>}</form></PageShell>}
+import { useState } from 'react';
+import { PageShell } from '../../components/common/PageShell';
+export function ResultsPage(){
+    const [value,setValue]=useState('');
+    
+    return <PageShell
+         eyebrow="Results"
+         title="Check Super 30 results.">
+            <form className="result-card" onSubmit={e=>e.preventDefault()}>
+                <h2>Search result</h2>
+                <p>Enter Roll No. followed by Date of Birth in DDMMYYYY format, for example 911201012008.</p>
+                <input value={value} onChange={e=>setValue(e.target.value)} placeholder="Roll No. + DOB"/>
+                <button className="btn btn-primary">Check result</button>
+                {value&&<small>Connect this frontend form to the official result service when backend/API access is available.</small>}
+                </form>
+                </PageShell>
+}
